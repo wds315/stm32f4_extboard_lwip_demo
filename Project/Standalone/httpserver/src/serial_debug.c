@@ -66,6 +66,9 @@ void DebugComPort_Init(void)
   USART_InitStructure.USART_Parity = USART_Parity_No;
   USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
   USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
+#ifdef USE_RSTCTS
+  USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_RTS_CTS;
+#endif
 
   STM_EVAL_COMInit(COM1, &USART_InitStructure);
 }
