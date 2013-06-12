@@ -69,6 +69,8 @@ for(i=0;i<50;i++)
   DebugComPort_Init();
 #endif
   
+    STM_EVAL_PBInit(BUTTON_WAKEUP, BUTTON_MODE_EXTI);
+
   /*Initialize LCD and Leds */ 
   LCD_LED_BUTTON_Init();
   
