@@ -44,3 +44,7 @@
 /Project/Standalone/tftpserver/MDK-ARM/Project.uvgui.Administrator
 /Project/Standalone/udp_echo_client/MDK-ARM/Project.uvgui.Administrator
 /Project/Standalone/udp_echo_server/MDK-ARM/Project.uvgui.Administrator
+/Project/Standalone/tcp_echo_client/MDK-ARM/STM324xG_EVAL/STM324xG_EVAL.htm
+/Project/Standalone/tcp_echo_server/MDK-ARM/STM324xG_EVAL/STM324xG_EVAL.htm
+/Project/Standalone/udp_echo_client/MDK-ARM/STM324xG_EVAL/STM324xG_EVAL.htm
+/Project/Standalone/udp_echo_server/MDK-ARM/STM324xG_EVAL/STM324xG_EVAL.htm
