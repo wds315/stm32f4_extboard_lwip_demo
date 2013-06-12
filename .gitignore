@@ -30,3 +30,17 @@
 # Backup files
 *.bak
 
+# Project files
+*.dep
+*.uvopt
+
+/Project/FreeRTOS/httpserver_netconn/MDK-ARM/Project.uvgui.Administrator
+/Project/FreeRTOS/httpserver_socket/MDK-ARM/Project.uvgui.Administrator
+/Project/FreeRTOS/udptcp_echo_server_netconn/MDK-ARM/Project.uvgui.Administrator
+/Project/Standalone/httpserver_0x8010000/MDK-ARM/Project.uvgui.Administrator
+/Project/Standalone/httpserver/MDK-ARM/Project.uvgui.Administrator
+/Project/Standalone/tcp_echo_client/MDK-ARM/Project.uvgui.Administrator
+/Project/Standalone/tcp_echo_server/MDK-ARM/Project.uvgui.Administrator
+/Project/Standalone/tftpserver/MDK-ARM/Project.uvgui.Administrator
+/Project/Standalone/udp_echo_client/MDK-ARM/Project.uvgui.Administrator
+/Project/Standalone/udp_echo_server/MDK-ARM/Project.uvgui.Administrator
