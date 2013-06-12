@@ -69,6 +69,8 @@ for(i=0;i<50;i++)
   DebugComPort_Init();
 #endif
   
+    STM_EVAL_PBInit(BUTTON_WAKEUP, BUTTON_MODE_EXTI);
+
   /*Initialize LCD and Leds */ 
   LCD_LED_BUTTON_Init();
   
@@ -158,8 +160,6 @@ void LCD_LED_BUTTON_Init(void)
   LCD_DisplayStringLine(Line2, (uint8_t*)MESSAGE3);
   LCD_DisplayStringLine(Line3, (uint8_t*)MESSAGE4);  
 #endif
-  
-  STM_EVAL_PBInit(BUTTON_TAMPER, BUTTON_MODE_EXTI);
 }
 
 #ifdef  USE_FULL_ASSERT

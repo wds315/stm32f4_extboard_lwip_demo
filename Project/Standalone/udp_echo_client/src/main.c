@@ -158,8 +158,6 @@ void LCD_LED_BUTTON_Init(void)
   LCD_DisplayStringLine(Line2, (uint8_t*)MESSAGE3);
   LCD_DisplayStringLine(Line3, (uint8_t*)MESSAGE4);  
 #endif
-  
-  STM_EVAL_PBInit(BUTTON_TAMPER, BUTTON_MODE_EXTI);
 }
 
 #ifdef  USE_FULL_ASSERT

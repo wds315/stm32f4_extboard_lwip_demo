@@ -137,6 +137,17 @@ void SysTick_Handler(void)
   Time_Update();
 }
 
+void EXTI0_IRQHandler(void)
+{
+  if(EXTI_GetITStatus(WAKEUP_BUTTON_EXTI_LINE) != RESET)
+  {
+    /*connect to tcp server */ 
+    tcp_echoclient_connect();
+
+    EXTI_ClearITPendingBit(WAKEUP_BUTTON_EXTI_LINE);
+  }  
+}
+
 /**
   * @brief  This function handles EXTI15_10
   * @param  None
@@ -145,14 +156,14 @@ void SysTick_Handler(void)
 //modified by hyx, use tamper button
 void EXTI15_10_IRQHandler(void) 
 {
-  if(EXTI_GetITStatus(EXTI_Line13) != RESET)
-  { 
-    /*connect to tcp server */ 
-    tcp_echoclient_connect();
-
-    /* Clear the EXTI line  pending bit */
-    EXTI_ClearITPendingBit(TAMPER_BUTTON_EXTI_LINE);
-  }
+  //if(EXTI_GetITStatus(EXTI_Line13) != RESET)
+  //{ 
+  //  /*connect to tcp server */ 
+  //  tcp_echoclient_connect();
+  //
+  //  /* Clear the EXTI line  pending bit */
+  //  EXTI_ClearITPendingBit(TAMPER_BUTTON_EXTI_LINE);
+  //}
   if(EXTI_GetITStatus(ETH_LINK_EXTI_LINE) != RESET)
   {
     Eth_Link_ITHandler(DP83848_PHY_ADDRESS);

@@ -45,7 +45,7 @@
 #define DEST_IP_ADDR0   192
 #define DEST_IP_ADDR1   168
 #define DEST_IP_ADDR2   0
-#define DEST_IP_ADDR3   100
+#define DEST_IP_ADDR3   110
 
 #define UDP_SERVER_PORT    7   /* define the UDP local connection port */
 #define UDP_CLIENT_PORT    7   /* define the UDP remote connection port */   
