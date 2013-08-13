@@ -261,8 +261,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>192</TopLine>
-      <CurrentLine>192</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\startup_stm32f4xx.s</PathWithFileName>
       <FilenameWithoutPath>startup_stm32f4xx.s</FilenameWithoutPath>
@@ -271,7 +271,7 @@
 
   <Group>
     <GroupName>User</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <File>
@@ -280,10 +280,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>20</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>58</TopLine>
-      <CurrentLine>60</CurrentLine>
+      <TopLine>118</TopLine>
+      <CurrentLine>89</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\src\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -308,10 +308,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>45</ColumnNumber>
+      <ColumnNumber>26</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>370</TopLine>
+      <CurrentLine>420</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\src\stm32f4x7_eth_bsp.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4x7_eth_bsp.c</FilenameWithoutPath>
@@ -1057,10 +1057,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>31</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1211</TopLine>
-      <CurrentLine>1213</CurrentLine>
+      <TopLine>1</TopLine>
+      <CurrentLine>1</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\..\..\Libraries\STM32F4x7_ETH_Driver\src\stm32f4x7_eth.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4x7_eth.c</FilenameWithoutPath>
@@ -1080,8 +1080,8 @@
       <Focus>0</Focus>
       <ColumnNumber>24</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>655</TopLine>
-      <CurrentLine>657</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\..\..\Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval_lcd.c</PathWithFileName>
       <FilenameWithoutPath>stm324xg_eval_lcd.c</FilenameWithoutPath>
@@ -1094,8 +1094,8 @@
       <Focus>0</Focus>
       <ColumnNumber>21</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>161</TopLine>
-      <CurrentLine>163</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\..\..\Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval.c</PathWithFileName>
       <FilenameWithoutPath>stm324xg_eval.c</FilenameWithoutPath>
@@ -1108,8 +1108,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>137</TopLine>
-      <CurrentLine>139</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\..\..\Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval_tsc.c</PathWithFileName>
       <FilenameWithoutPath>stm324xg_eval_tsc.c</FilenameWithoutPath>

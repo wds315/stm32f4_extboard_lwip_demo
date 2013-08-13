@@ -76,6 +76,24 @@ int ETH_BSP_Config(void)
   return 1;
 }
 
+//配置网卡LED灯的指示模式，在ETH_Init函数调用前使用
+//DP83848实际还有更多的功能寄存器，都是通过类似的读、写方法进行的。
+//这里仅仅是一个LED灯的例子
+static void ETH_SetLED()
+{
+    uint16_t reg_value;
+
+    //0x18是强制使用LED，不写也行，默认就是0
+    ETH_WritePHYRegister(DP83848_PHY_ADDRESS, 0x18, 0x0000);
+
+    //0x19是配置LED功能,bit5/6/7 表示灯的类型，看手册写了
+    reg_value = ETH_ReadPHYRegister(DP83848_PHY_ADDRESS, 0x19);
+    reg_value &= 0x00E0;        //清除bit5/bit6
+    reg_value |= 0x00C0;        //或者其他的数据，试试看
+    ETH_WritePHYRegister(DP83848_PHY_ADDRESS, 0x19, reg_value);
+}
+
+
 /**
   * @brief  Configures the Ethernet Interface
   * @param  None
@@ -139,6 +157,8 @@ static void ETH_MACDMA_Config(void)
   ETH_InitStructure.ETH_TxDMABurstLength = ETH_TxDMABurstLength_32Beat;
   ETH_InitStructure.ETH_DMAArbitration = ETH_DMAArbitration_RoundRobin_RxTx_2_1;
 
+  ETH_SetLED();
+  
   /* Configure Ethernet */
   EthInitStatus = ETH_Init(&ETH_InitStructure, DP83848_PHY_ADDRESS);
 }
@@ -207,107 +227,6 @@ void ETH_GPIO_Config(void)
   GPIO_PinAFConfig(GPIOC, GPIO_PinSource4, GPIO_AF_ETH);
   GPIO_PinAFConfig(GPIOC, GPIO_PinSource5, GPIO_AF_ETH);
 }
-
-//void ETH_GPIO_Config(void)
-//{
-//  GPIO_InitTypeDef GPIO_InitStructure;
-//  
-//  /* Enable GPIOs clocks */
-//  RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA | RCC_AHB1Periph_GPIOB |
-//                         RCC_AHB1Periph_GPIOC | RCC_AHB1Periph_GPIOI |
-//                         RCC_AHB1Periph_GPIOG | RCC_AHB1Periph_GPIOH |
-//                         RCC_AHB1Periph_GPIOF, ENABLE);
-//
-//  /* Enable SYSCFG clock */
-//  RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);  
-//
-//  /* Configure MCO (PA8) */
-//  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;
-//  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
-//  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
-//  GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-//  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL ;  
-//  GPIO_Init(GPIOA, &GPIO_InitStructure);
-//  
-//  /* MII/RMII Media interface selection --------------------------------------*/
-//#ifdef MII_MODE /* Mode MII with STM324xG-EVAL  */
-// #ifdef PHY_CLOCK_MCO
-//
-//
-//  /* Output HSE clock (25MHz) on MCO pin (PA8) to clock the PHY */
-//  RCC_MCO1Config(RCC_MCO1Source_HSE, RCC_MCO1Div_1);
-// #endif /* PHY_CLOCK_MCO */
-//
-//  SYSCFG_ETH_MediaInterfaceConfig(SYSCFG_ETH_MediaInterface_MII);
-//#elif defined RMII_MODE  /* Mode RMII with STM324xG-EVAL */
-//
-//  SYSCFG_ETH_MediaInterfaceConfig(SYSCFG_ETH_MediaInterface_RMII);
-//#endif
-//
-///* Ethernet pins configuration ************************************************/
-//   /*
-//        ETH_MDIO -------------------------> PA2
-//        ETH_MDC --------------------------> PC1
-//        ETH_PPS_OUT ----------------------> PB5
-//        ETH_MII_CRS ----------------------> PH2
-//        ETH_MII_COL ----------------------> PH3
-//        ETH_MII_RX_ER --------------------> PI10
-//        ETH_MII_RXD2 ---------------------> PH6
-//        ETH_MII_RXD3 ---------------------> PH7
-//        ETH_MII_TX_CLK -------------------> PC3
-//        ETH_MII_TXD2 ---------------------> PC2
-//        ETH_MII_TXD3 ---------------------> PB8
-//        ETH_MII_RX_CLK/ETH_RMII_REF_CLK---> PA1
-//        ETH_MII_RX_DV/ETH_RMII_CRS_DV ----> PA7
-//        ETH_MII_RXD0/ETH_RMII_RXD0 -------> PC4
-//        ETH_MII_RXD1/ETH_RMII_RXD1 -------> PC5
-//        ETH_MII_TX_EN/ETH_RMII_TX_EN -----> PG11
-//        ETH_MII_TXD0/ETH_RMII_TXD0 -------> PG13
-//        ETH_MII_TXD1/ETH_RMII_TXD1 -------> PG14
-//                                                  */
-//
-//  /* Configure PA1, PA2 and PA7 */
-//  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_7;
-//  GPIO_Init(GPIOA, &GPIO_InitStructure);
-//  GPIO_PinAFConfig(GPIOA, GPIO_PinSource1, GPIO_AF_ETH);
-//  GPIO_PinAFConfig(GPIOA, GPIO_PinSource2, GPIO_AF_ETH);
-//  GPIO_PinAFConfig(GPIOA, GPIO_PinSource7, GPIO_AF_ETH);
-//
-//  /* Configure PB5 and PB8 */
-//  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5 | GPIO_Pin_8;
-//  GPIO_Init(GPIOB, &GPIO_InitStructure);
-//  GPIO_PinAFConfig(GPIOB, GPIO_PinSource5, GPIO_AF_ETH);	
-//  GPIO_PinAFConfig(GPIOB, GPIO_PinSource8, GPIO_AF_ETH);
-//
-//  /* Configure PC1, PC2, PC3, PC4 and PC5 */
-//  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5;
-//  GPIO_Init(GPIOC, &GPIO_InitStructure);
-//  GPIO_PinAFConfig(GPIOC, GPIO_PinSource1, GPIO_AF_ETH);
-//  GPIO_PinAFConfig(GPIOC, GPIO_PinSource2, GPIO_AF_ETH);
-//  GPIO_PinAFConfig(GPIOC, GPIO_PinSource3, GPIO_AF_ETH);
-//  GPIO_PinAFConfig(GPIOC, GPIO_PinSource4, GPIO_AF_ETH);
-//  GPIO_PinAFConfig(GPIOC, GPIO_PinSource5, GPIO_AF_ETH);
-//                                
-//  /* Configure PG11, PG14 and PG13 */
-//  GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_11 | GPIO_Pin_13 | GPIO_Pin_14;
-//  GPIO_Init(GPIOG, &GPIO_InitStructure);
-//  GPIO_PinAFConfig(GPIOG, GPIO_PinSource11, GPIO_AF_ETH);
-//  GPIO_PinAFConfig(GPIOG, GPIO_PinSource13, GPIO_AF_ETH);
-//  GPIO_PinAFConfig(GPIOG, GPIO_PinSource14, GPIO_AF_ETH);
-//
-//  /* Configure PH2, PH3, PH6, PH7 */
-//  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_6 | GPIO_Pin_7;
-//  GPIO_Init(GPIOH, &GPIO_InitStructure);
-//  GPIO_PinAFConfig(GPIOH, GPIO_PinSource2, GPIO_AF_ETH);
-//  GPIO_PinAFConfig(GPIOH, GPIO_PinSource3, GPIO_AF_ETH);
-//  GPIO_PinAFConfig(GPIOH, GPIO_PinSource6, GPIO_AF_ETH);
-//  GPIO_PinAFConfig(GPIOH, GPIO_PinSource7, GPIO_AF_ETH);
-//
-//  /* Configure PI10 */
-//  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
-//  GPIO_Init(GPIOI, &GPIO_InitStructure);
-//  GPIO_PinAFConfig(GPIOI, GPIO_PinSource10, GPIO_AF_ETH);
-//}
 
 /**
   * @brief  Configure the PHY to generate an interrupt on change of link status.

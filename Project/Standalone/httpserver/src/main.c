@@ -86,6 +86,7 @@ int main(void)
 	LCD_SetDisplayWindow(0, 0, 320, 240);
 	LCD_WriteRAM_Prepare();
 #if 1
+    //显示各种颜色条
 	{
 		int i;
 		for (i = 0; i <	320 * 240; i++)
