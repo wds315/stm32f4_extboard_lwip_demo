@@ -88,7 +88,7 @@ static void ETH_SetLED()
 
     //0x19是配置LED功能,bit5/6/7 表示灯的类型，看手册写了
     reg_value = ETH_ReadPHYRegister(DP83848_PHY_ADDRESS, 0x19);
-    reg_value &= 0x00E0;        //清除bit5/bit6
+    reg_value &= ~0x00E0;        //清除bit5/bit6
     reg_value |= 0x00C0;        //或者其他的数据，试试看
     ETH_WritePHYRegister(DP83848_PHY_ADDRESS, 0x19, reg_value);
 }
@@ -157,10 +157,9 @@ static void ETH_MACDMA_Config(void)
   ETH_InitStructure.ETH_TxDMABurstLength = ETH_TxDMABurstLength_32Beat;
   ETH_InitStructure.ETH_DMAArbitration = ETH_DMAArbitration_RoundRobin_RxTx_2_1;
 
-  ETH_SetLED();
-  
   /* Configure Ethernet */
   EthInitStatus = ETH_Init(&ETH_InitStructure, DP83848_PHY_ADDRESS);
+  ETH_SetLED();
 }
 
 /**
