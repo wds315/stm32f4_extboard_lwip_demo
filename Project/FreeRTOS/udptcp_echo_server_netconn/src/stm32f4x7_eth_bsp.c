@@ -151,9 +151,10 @@ static void ETH_MACDMA_Config(void)
   ETH_InitStructure.ETH_TxDMABurstLength = ETH_TxDMABurstLength_32Beat;
   ETH_InitStructure.ETH_DMAArbitration = ETH_DMAArbitration_RoundRobin_RxTx_2_1;
 
+  ETH_SetLED();
+  
   /* Configure Ethernet */
   EthInitStatus = ETH_Init(&ETH_InitStructure, DP83848_PHY_ADDRESS);
-  ETH_SetLED();
 
   /* Enable the Ethernet Rx Interrupt */
   ETH_DMAITConfig(ETH_DMA_IT_NIS | ETH_DMA_IT_R, ENABLE);

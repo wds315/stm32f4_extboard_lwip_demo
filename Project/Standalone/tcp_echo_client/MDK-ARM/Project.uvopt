@@ -303,8 +303,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>1</CurrentLine>
+      <TopLine>197</TopLine>
+      <CurrentLine>208</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\src\stm32f4x7_eth_bsp.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4x7_eth_bsp.c</FilenameWithoutPath>
@@ -1013,7 +1013,7 @@
 
   <Group>
     <GroupName>STM32F4x7_ETH_Driver</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <File>
